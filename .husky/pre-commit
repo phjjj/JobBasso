@@ -1,1 +1,16 @@
-pnpm lint-staged --quiet
+#!/usr/bin/env sh
+
+echo "🔍 린트 검사"
+
+if ! pnpm lint-staged; then
+    echo ""
+    echo "❌ 린트 검사가 실패했습니다."
+    echo "다음 명령어로 문제를 수정하세요:"
+    echo "  pnpm lint:fix    # 자동 수정 가능한 문제들 수정"
+    echo "  pnpm lint        # 모든 린트 문제 확인"
+    echo ""
+    echo "⚠️  모든 린트 문제가 해결되어야 커밋이 가능합니다."
+    exit 1
+fi
+
+echo "✅ 린트 검사가 통과했습니다."
