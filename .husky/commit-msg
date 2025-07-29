@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# 커밋 메시지 형식 검사 (예: feat :, fix :, docs :, style :, refactor :, test :, chore :)
+commit_regex='^(feat|fix|docs|style|refactor|test|chore)(\(.+\))? : .{1,50}'
+
+if ! grep -qE "$commit_regex" "$1"; then
+    echo "❌ 커밋 메시지 형식이 올바르지 않습니다."
+    echo "올바른 형식: <type>(<scope>): <description>"
+    echo "예시: feat: 새로운 기능 추가"
+    echo "      fix(auth): 로그인 버그 수정"
+    echo "      docs: README 업데이트"
+    exit 1
+fi
+
+echo "✅ 커밋 메시지 형식이 올바릅니다." 
