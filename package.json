@@ -13,15 +13,6 @@
     "prepare": "husky",
     "lint-staged": "lint-staged"
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,css,md}": [
-      "prettier --write"
-    ]
-  },
   "dependencies": {
     "next": "15.4.4",
     "react": "19.1.0",
