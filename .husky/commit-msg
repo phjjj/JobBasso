@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+
+# 커밋 메시지 형식 검사 (이슈 ID 포함 가능)
+commit_regex='^(?:\[#[0-9]+\] )?(feat|fix|docs|style|refactor|test|chore)(\(.+\))?: .{1,50}'
+
+if ! grep -qE "$commit_regex" "$1"; then
+    echo "❌ 커밋 메시지 형식이 올바르지 않습니다."
+    echo ""
+    echo "📋 올바른 형식:"
+    echo "  - <type>(<scope>): <description>"
+    echo "  - [<issue-number>] <type>(<scope>): <description>"
+    echo ""
+    echo "✅ 올바른 예시:"
+    echo "  feat: 새로운 기능 추가"
+    echo "  fix(auth): 로그인 버그 수정"
+    echo "  docs: README 업데이트"
+    echo "  [#1] feat(user): 로그인 폼 추가"
+    echo "  [#15] fix(auth): 인증 버그 수정"
+    echo ""
+    echo "✅ 허용되는 타입:"
+    echo "  - feat: 새로운 기능"
+    echo "  - fix: 버그 수정"
+    echo "  - docs: 문서 수정"
+    echo "  - style: 코드 포맷팅"
+    echo "  - refactor: 코드 리팩토링"
+    echo "  - test: 테스트 추가/수정"
+    echo "  - chore: 빌드 프로세스 또는 보조 도구 변경"
+    echo ""
+    echo "✅ 팁: 브랜치명에 이슈 번호가 포함되어 있으면 자동으로 커밋 메시지에 추가됩니다."
+    exit 1
+fi
