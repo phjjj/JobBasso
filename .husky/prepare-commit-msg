@@ -6,12 +6,12 @@ BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
 echo "🌿 현재 브랜치: $BRANCH_NAME"
 
 # 브랜치명은 feature/123 또는 feature/123-xxx 등과 같은 형식이어야 함
-branch_regex='^(feature|design|bugfix|hotfix|release|refactor|docs|test|chore|style|perf)/[0-9]+(\-.+)?'
+branch_regex='^(feature|bugfix|hotfix|refactor|docs|test|chore|perf)/[0-9]+(\-.+)?'
 
 if ! echo "$BRANCH_NAME" | grep -qE "$branch_regex"; then
   echo "❌ 잘못된 브랜치 명입니다." >&2
   echo "👉 올바른 브랜치 명은 feature/이슈번호-설명 와 같은 형식이어야 합니다." >&2
-  echo "feature|design|bugfix|hotfix|release|refactor|docs|test|chore|style|perf 중 하나여야 합니다." >&2
+  echo "feature|bugfix|hotfix|refactor|docs|test|chore|perf 중 하나여야 합니다." >&2
   exit 1
 fi
 
